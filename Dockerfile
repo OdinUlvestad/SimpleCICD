@@ -1,5 +1,5 @@
 # Fetch my Docker hub repo, using the latest version of it
-FROM ubuntu:latest
+FROM node:18-alpine
 # Remove the previous Hello folder if it already exists in the image
 # RUN rm -r Hello 
 # Add a folder named Hello in the root of docker container 
