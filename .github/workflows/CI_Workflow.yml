@@ -46,5 +46,4 @@ jobs:
       
       # Checks if possible to build the container to my Docker hub repository,
       - name: Build the Docker image
-          id: build
-          run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/cicd_pipeline
+        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/cicd_pipeline
