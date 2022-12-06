@@ -29,9 +29,6 @@ jobs:
           echo Hello, world!  
           echo The world responds hello back!
   
-  build: # This workflow will define building and pushing a docker container
-    runs-on: ubuntu-latest
-    steps: 
         # Set up support to run virual machines on the conteiner
       - name: Set up support Docker container for running x86_64 virtal machines using QEMU
         uses: docker/setup-qemu-action@v2
