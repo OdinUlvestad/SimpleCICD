@@ -29,11 +29,21 @@ jobs:
           echo Hello, world!  
           echo The world responds hello back!
   
-  build: # Will define building and pushing a docker container
+  build: # This workflow will define building and pushing a docker container
     runs-on: ubuntu-latest
     steps: 
+        # Checks if possible to log into docker hub using Git-Hub secrets
       - name: Log into docker hub from Git-Hub actions
         uses: docker/login-action@v2
-        with:
+        with: # Defined in Git-Hub Secrets, the credentials for loggin into my Docker hub account
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
+      
+      # Checks if possible to build the container as well pushing it to my Docker hub repository,
+      - name: Build and push the docker container
+        uses: docker/build-push-action@v3
+        with:
+          file: ./Dockerfile # This file will build a folder and a text file at the root of the container
+          push: true
+          tags: ${{ secrets.DOCKER_USER }}/cicd_pipeline
+        run: docker context
