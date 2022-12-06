@@ -28,3 +28,12 @@ jobs:
         run: |
           echo Hello, world!  
           echo The world responds hello back!
+  
+  build: # Will define building and pushing a docker container
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Log into docker hub from Git-Hub actions
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
