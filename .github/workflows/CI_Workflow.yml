@@ -43,7 +43,7 @@ jobs:
       - name: Build and push the docker container
         uses: docker/build-push-action@v3
         with:
+          context: docker context
           file: ./Dockerfile # This file will build a folder and a text file at the root of the container
           push: true
           tags: ${{ secrets.DOCKER_USER }}/cicd_pipeline
-        run: docker context
