@@ -47,9 +47,9 @@ jobs:
         # Checks if possible to build the container to my Docker container
       - name: Build the docker image
         id: build
-        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/assignment6/latest
+        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/cicd_pipeline/latest
 
         # Checks if able to push the container to the Docker Hub
       - name: Push the Docker image
         id: push
-        run: docker push ${{ secrets.DOCKER_USER }}/assignment6:latest
+        run: docker push ${{ secrets.DOCKER_USER }}/cicd_pipeline:latest
