@@ -51,7 +51,6 @@ jobs:
 
       - name: Check if the Dockerfile created a text file in the container
         run: |
-          cd Hello
           cat HelloWorld.txt
 
         # Checks if able to push the container to the Docker Hub
