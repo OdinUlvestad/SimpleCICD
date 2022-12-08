@@ -79,15 +79,15 @@ jobs:
       # - Stop the docker container
       # - Remove the running container
 
-      steps:
-        - name: Deploy the the Docker containeer
-          id: deploy
-          run: |
-            docker login azure
-            docker context create aci myacicontext
-            docker --context myacicontext run -p 80:80 nginx
-            docker logs <CONTAINER_ID>
-            docker exec -t <CONTAINER_ID> COMMAND
-            docker stop <CONTAINER_ID>
-            docker rm <CONTAINER_ID>
+    steps:
+     - name: Deploy the the Docker containeer
+        id: deploy
+        run: |
+          docker login azure
+          docker context create aci myacicontext
+          docker --context myacicontext run -p 80:80 nginx
+          docker logs <CONTAINER_ID>
+          docker exec -t <CONTAINER_ID> COMMAND
+          docker stop <CONTAINER_ID>
+          docker rm <CONTAINER_ID>
 
