@@ -81,7 +81,6 @@ jobs:
 
     steps:
      - name: Deploy the the Docker containeer
-        id: deploy
         run: |
           docker login azure
           docker context create aci myacicontext
