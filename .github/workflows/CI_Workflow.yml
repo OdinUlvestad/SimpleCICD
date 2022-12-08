@@ -49,6 +49,11 @@ jobs:
         id: build
         run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/cicd_pipeline
 
+      - name: Check if the Dockerfile created a text file in the container
+        run: |
+          cd Hello
+          cat HelloWorld.txt
+
         # Checks if able to push the container to the Docker Hub
       - name: Push the Docker image
         id: push
