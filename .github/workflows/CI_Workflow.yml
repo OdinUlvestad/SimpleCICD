@@ -15,7 +15,7 @@ on: # The trigger for the workflow to begin testing
 # code to run, as well as which actions we'd like to preform. These jobs or tasks
 # can run either in parallell or in sequence
 jobs:
-  test: # This workflow is defined as test
+  CI: # This workflow is defined as Continues Integration
     # Defines what image the tasks will run on
     runs-on: ubuntu-latest
     # Stepss represent a sequence which the tasks will be preformed in.
@@ -23,6 +23,7 @@ jobs:
         # This test checks out the github repo under $GITHUB_WORKSPACE, so our jobs can access it
       - name: Check out Git-Hub repository
         uses: actions/checkout@v3
+        
         # tests if able to run linux commands in our ubuntu image
       - name: Run a single line script to see if yaml works as intended
         run: |
@@ -49,6 +50,8 @@ jobs:
         id: build
         run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/cicd_pipeline
 
+        # If the Docker file was run correctly, there should appear a text file at in the image
+        # inside a Hello directory located at the root of the image.
       - name: Check if the Dockerfile created a text file in the container
         run: |
           cat HelloWorld.txt
