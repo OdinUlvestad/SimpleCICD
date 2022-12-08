@@ -72,7 +72,7 @@ jobs:
       # not defined a proper log in to my Azure account, however how i would go on to deploy the 
       # docker container:
       # - Log in to the Azure service
-      # - Download support for docker in the Azure server
+      # - Download support for docker containers in the Azure server
       # - Push the built container in docker up to Azure
       # - Expose the docker container to the port 80:80 and open the app via a local host
       # - Run a test if i can open the text file i preeviously created in the docker file
