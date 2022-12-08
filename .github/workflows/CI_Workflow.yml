@@ -23,7 +23,7 @@ jobs:
         # This test checks out the github repo under $GITHUB_WORKSPACE, so our jobs can access it
       - name: Check out Git-Hub repository
         uses: actions/checkout@v3
-        
+
         # tests if able to run linux commands in our ubuntu image
       - name: Run a single line script to see if yaml works as intended
         run: |
@@ -60,3 +60,34 @@ jobs:
       - name: Push the Docker image
         id: push
         run: docker push ${{ secrets.DOCKER_USER }}/cicd_pipeline:latest
+
+  CD: # This is the workflow which will define the continues Deployment
+    runs-on: ubuntu-latest # Defines what the image will run on
+    needs: CI # Needs the CI to be complete before starting these jobs
+    environment: # Defines the evniroment of the app
+      name: 'Production' # The title of the enviroment 
+
+      # For deploying the container into a server I would have used a cloud service like Azure
+      # Now the steps below and the tests run in the CD part of this pipeline will fail. I have
+      # not defined a proper log in to my Azure account, however how i would go on to deploy the 
+      # docker container:
+      # - Log in to the Azure service
+      # - Download support for docker in the Azure server
+      # - Push the built container in docker up to Azure
+      # - Expose the docker container to the port 80:80 and open the app via a local host
+      # - Run a test if i can open the text file i preeviously created in the docker file
+      # - Stop the docker container
+      # - Remove the running container
+
+      steps:
+        - name: Deploy the the Docker containeer
+          id: deploy
+          run: |
+            docker login azure
+            docker context create aci myacicontext
+            docker --context myacicontext run -p 80:80 nginx
+            docker logs <CONTAINER_ID>
+            docker exec -t <CONTAINER_ID> COMMAND
+            docker stop <CONTAINER_ID>
+            docker rm <CONTAINER_ID>
+
