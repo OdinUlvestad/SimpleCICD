@@ -80,7 +80,7 @@ jobs:
       # - Remove the running container
 
     steps:
-     - name: Deploy the the Docker containeer
+      - name: Deploy the the Docker containeer
         run: |
           docker login azure
           docker context create aci myacicontext
